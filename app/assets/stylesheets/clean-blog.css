@@ -314,7 +314,7 @@ footer .copyright {
 /* .floating-label-form-group::not(:first-child) {
   padding-left: 14px;
   border-left: 1px solid #eeeeee; */
-}
+/* } */
 .floating-label-form-group-with-value label {
   top: 0;
   opacity: 1;
