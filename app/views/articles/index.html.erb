@@ -1,22 +1,117 @@
-<h1>Listing Articles</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>    
-  </tr>
-  
-  <% @articles.each do |article| %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= article.text %></td>
-    <td>Posted <%= time_ago_in_words(article.created_at) %> ago</td>
-    <td><%= link_to 'Show', article_path(article) %></td>    
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>    
-    <td><%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: "Are you sure?" } %></td>
-  </tr>
-  <% end %>
-</table>
-<br>
-<%= link_to 'New Article', new_article_path %>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+              <%= link_to 'My Blog', root_path, class: "navbar-brand" %>  
 
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                      <%= link_to 'Home', root_path %>  
+                    </li>
+                    <li>
+                      <%= link_to 'Write a New Article', new_article_path %>  
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('<%= asset_path("home-bg.jpg") %>')">      
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>My Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">This is a blog I made all by myself.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+
+
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <% @articles.each do |article| %>
+                <div class="post-preview">
+                  <h2 class="post-title"><%= link_to article.title.capitalize, article_path(article) %></h2>
+                    <p class="post-meta">Posted <%= time_ago_in_words(article.created_at) %> ago</p>
+                  
+                  
+                    <ul class="pager">
+                        <li class="next"><%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: "Are you sure?" } %></li>                  
+                        <li class="next"><%= link_to 'Edit', edit_article_path(article) %></li>                      
+                        <li class="next"><%= link_to 'Show', article_path(article) %></li>                      
+                    </ul>                  
+                  
+                </div>
+                <hr>
+                <% end %>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
